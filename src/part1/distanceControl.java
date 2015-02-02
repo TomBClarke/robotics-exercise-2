@@ -24,14 +24,14 @@ public class distanceControl {
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S1);
 		
 		//Creates a pilot to control the robot with.
-		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.A);
+		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		
 		pilot.forward();
 		double stopDistance = 10;
 		
 		while(true){
 			double measuredDistance = sonar.getDistance();
-			double speed = measuredDistance - stopDistance;				
+			double speed = measuredDistance - stopDistance; //Slows down, but doesn't speed up.	
 			pilot.setTravelSpeed(speed);
 			}
 	}
