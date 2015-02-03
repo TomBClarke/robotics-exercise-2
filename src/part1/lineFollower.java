@@ -5,6 +5,7 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
+import lejos.util.Delay;
 
 /**
  * 
@@ -20,21 +21,49 @@ public class lineFollower {
 	 */
 	public lineFollower(int crossOver){
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
-		LightSensor sensorL = new LightSensor(SensorPort.S2, false);
-		LightSensor sensorR = new LightSensor(SensorPort.S3, false);
+		
+		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
+		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
+		
+		/*
+		while(true){
+			System.out.println("L = " + sensorL.getNormalizedLightValue() + ", R = " + sensorR.getNormalizedLightValue());
+			Delay.msDelay(1000);
+		}
+		*/
+		
+		sensorL.setHigh(380);
+		sensorL.setLow(330);
+		sensorR.setHigh(360);
+		sensorR.setLow(310);
+		
+		/*
+		while(true){
+			System.out.println("L = " + sensorL.getLightValue() + ", R = " + sensorR.getLightValue());
+			Delay.msDelay(1000);
+		}
+		*/
 		
 		pilot.forward();
+		pilot.setTravelSpeed(100);
 		while(true){
-			boolean leftSide = sensorL.getNormalizedLightValue() < crossOver;
-			boolean rightSide = sensorR.getNormalizedLightValue() < crossOver;
+			System.out.println("L = " + sensorL.getLightValue() + ", R = " + sensorR.getLightValue());
+			boolean leftSide = sensorL.getLightValue() < 50;
+			boolean rightSide = sensorR.getLightValue() < 50;
 			if(leftSide){
-				pilot.arc(10, -10);
 				leftSide = false;
+				pilot.stop();
+				pilot.steer(200);
+				Delay.msDelay(200);
+				pilot.stop();
 				pilot.forward();
 			}
 			if(rightSide){
-				pilot.arc(10, -10);
 				rightSide = false;
+				pilot.stop();
+				pilot.steer(-200);
+				Delay.msDelay(200);
+				pilot.stop();
 				pilot.forward();
 			}
 		}
@@ -43,7 +72,7 @@ public class lineFollower {
 	public static void main(String[] args) {
 		System.out.println("Press any button to begin.");
 		Button.waitForAnyPress();
-		new lineFollower(300);
+		new lineFollower(340);
 	}
 }
 
