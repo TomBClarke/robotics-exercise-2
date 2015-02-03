@@ -5,7 +5,6 @@ import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
 import lejos.robotics.navigation.DifferentialPilot;
-import lejos.util.Delay;
 
 /**
  * 
@@ -19,22 +18,17 @@ public class lineFollower {
 	/**
 	 * Allows the robot to follow a line using two light sensors.
 	 */
-	public lineFollower(){
+	public lineFollower(int crossOver){
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, false);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, false);
-		while(true){
-			System.out.println(sensorL.getNormalizedLightValue());
-			Delay.msDelay(500);
-		}
 		
-		/*
 		pilot.forward();
 		while(true){
-			int left = sensorL.getNormalizedLightValue();
-			int right = sensorR.getNormalizedLightValue();
+			boolean leftSide = sensorL.getNormalizedLightValue() < crossOver;
+			boolean rightSide = sensorR.getNormalizedLightValue() < crossOver;
 			if(leftSide){
-				pilot.arc(10, -10);//Can we use feedback control here?
+				pilot.arc(10, -10);
 				leftSide = false;
 				pilot.forward();
 			}
@@ -44,13 +38,12 @@ public class lineFollower {
 				pilot.forward();
 			}
 		}
-		*/
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("Press any button to begin.");
 		Button.waitForAnyPress();
-		new lineFollower();
+		new lineFollower(300);
 	}
 }
 
