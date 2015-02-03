@@ -1,10 +1,11 @@
 package part1;
 
 import lejos.nxt.Button;
+import lejos.nxt.LightSensor;
 import lejos.nxt.Motor;
 import lejos.nxt.SensorPort;
-import lejos.nxt.SensorPortListener;
 import lejos.robotics.navigation.DifferentialPilot;
+import lejos.util.Delay;
 
 /**
  * 
@@ -14,30 +15,24 @@ import lejos.robotics.navigation.DifferentialPilot;
  *
  */
 public class lineFollower {
-
-	private static boolean leftSide;
-	private static boolean rightSide;
 	
 	/**
 	 * Allows the robot to follow a line using two light sensors.
 	 */
 	public lineFollower(){
-		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);		
-		SensorPort.S2.addSensorPortListener(new SensorPortListener(){
-			@Override
-			public void stateChanged(SensorPort aSource, int aOldValue, int aNewValue) {
-				leftSide = true; //Need to look at values.
-			}
-		});		
-		SensorPort.S3.addSensorPortListener(new SensorPortListener(){
-			@Override
-			public void stateChanged(SensorPort aSource, int aOldValue, int aNewValue) {
-				rightSide = true; //Need to look at values.
-			}
-		});
+		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
+		LightSensor sensorL = new LightSensor(SensorPort.S2, false);
+		LightSensor sensorR = new LightSensor(SensorPort.S3, false);
+		while(true){
+			System.out.println(sensorL.getNormalizedLightValue());
+			Delay.msDelay(500);
+		}
 		
+		/*
 		pilot.forward();
 		while(true){
+			int left = sensorL.getNormalizedLightValue();
+			int right = sensorR.getNormalizedLightValue();
 			if(leftSide){
 				pilot.arc(10, -10);//Can we use feedback control here?
 				leftSide = false;
@@ -49,6 +44,7 @@ public class lineFollower {
 				pilot.forward();
 			}
 		}
+		*/
 	}
 	
 	public static void main(String[] args) {
@@ -56,7 +52,6 @@ public class lineFollower {
 		Button.waitForAnyPress();
 		new lineFollower();
 	}
-
 }
 
 /*
