@@ -27,13 +27,33 @@ public class distanceControl {
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		
 		pilot.forward();
-		double stopDistance = 10;
+		double setDistance = 20;
+		double currentSpeed = 0;
+		double k = 5;
+		double measuredDistance;
+		double error;
 		
 		while(true){
-			double measuredDistance = sonar.getDistance();
-			double speed = measuredDistance - stopDistance; //Slows down, but doesn't speed up.	
-			pilot.setTravelSpeed(speed);
+			measuredDistance = sonar.getDistance();
+			error = measuredDistance - setDistance;
+			//currentSpeed+k* 
+			currentSpeed = k * error;
+			
+			if(currentSpeed > 300){
+				currentSpeed = 300;
 			}
+			else if(currentSpeed < -300){
+				currentSpeed = -300;
+			}
+			
+			if(currentSpeed < 0){
+				pilot.backward();
+			}
+			else {
+				pilot.forward();
+			}
+			pilot.setTravelSpeed(currentSpeed);
+		}
 	}
 
 	public static void main(String[] args) {
@@ -41,7 +61,6 @@ public class distanceControl {
 		Button.waitForAnyPress();
 		new distanceControl();
 	}
-
 }
 
 /*
