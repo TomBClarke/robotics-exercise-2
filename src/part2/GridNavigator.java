@@ -44,9 +44,3 @@ public class GridNavigator {
 		new GridNavigator();
 	}
 }
-
-/*
-Ultrasonic sensor = SensorPort.S1
-Left light sensor = SensorPort.S2
-Right light sensor = SensorPort.S3
-*/

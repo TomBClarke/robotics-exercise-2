@@ -1,6 +1,8 @@
 package part3;
 
 import lejos.nxt.Button;
+import lejos.nxt.SensorPort;
+import lejos.nxt.addon.NXTCam;
 
 /**
  * 
@@ -15,7 +17,7 @@ public class BrightColourFollower {
 	 * Makes the robot travel towards a brightly coloured object.
 	 */
 	public BrightColourFollower(){
-		//TODO do this method
+		NXTCam cam = new NXTCam(SensorPort.S1);
 	}
 	
 	public static void main(String[] args) {
@@ -23,11 +25,4 @@ public class BrightColourFollower {
 		Button.waitForAnyPress();
 		new BrightColourFollower();
 	}
-
 }
-
-/*
-Ultrasonic sensor = SensorPort.S1
-Left light sensor = SensorPort.S2
-Right light sensor = SensorPort.S3
-*/

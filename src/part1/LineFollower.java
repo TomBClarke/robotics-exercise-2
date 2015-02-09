@@ -74,9 +74,3 @@ public class LineFollower {
 		new LineFollower();
 	}
 }
-
-/*
-Ultrasonic sensor = SensorPort.S1
-Left light sensor = SensorPort.S2
-Right light sensor = SensorPort.S3
-*/

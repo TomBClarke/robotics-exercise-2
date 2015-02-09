@@ -21,7 +21,7 @@ public class DistanceControl {
 	public DistanceControl(){
 		
 		//Creates a ultrasonic sensor to find distance.
-		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S1);
+		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S4);
 		
 		//Creates a pilot to control the robot with.
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
@@ -62,9 +62,3 @@ public class DistanceControl {
 		new DistanceControl();
 	}
 }
-
-/*
-Ultrasonic sensor = SensorPort.S1
-Left light sensor = SensorPort.S2
-Right light sensor = SensorPort.S3
-*/
