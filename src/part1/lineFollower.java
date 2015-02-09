@@ -25,6 +25,8 @@ public class lineFollower {
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
 		
+		int turnTime = 50;
+		
 		/*
 		while(true){
 			System.out.println("L = " + sensorL.getNormalizedLightValue() + ", R = " + sensorR.getNormalizedLightValue());
@@ -32,10 +34,10 @@ public class lineFollower {
 		}
 		*/
 		
-		sensorL.setHigh(380);
-		sensorL.setLow(330);
-		sensorR.setHigh(360);
-		sensorR.setLow(310);
+		sensorL.setHigh(440);
+		sensorL.setLow(350);
+		sensorR.setHigh(415);
+		sensorR.setLow(350);
 		
 		/*
 		while(true){
@@ -52,18 +54,18 @@ public class lineFollower {
 			boolean rightSide = sensorR.getLightValue() < 50;
 			if(leftSide){
 				leftSide = false;
-				pilot.stop();
+				//pilot.stop();
 				pilot.steer(200);
-				Delay.msDelay(200);
-				pilot.stop();
+				Delay.msDelay(turnTime);
+				//pilot.stop();
 				pilot.forward();
 			}
 			if(rightSide){
 				rightSide = false;
-				pilot.stop();
+				//pilot.stop();
 				pilot.steer(-200);
-				Delay.msDelay(200);
-				pilot.stop();
+				Delay.msDelay(turnTime);
+				//pilot.stop();
 				pilot.forward();
 			}
 		}

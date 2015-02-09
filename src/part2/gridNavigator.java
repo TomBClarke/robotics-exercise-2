@@ -1,6 +1,12 @@
 package part2;
 
 import lejos.nxt.Button;
+import lejos.nxt.LightSensor;
+import lejos.nxt.Motor;
+import lejos.nxt.SensorPort;
+import lejos.robotics.navigation.DifferentialPilot;
+import lejos.robotics.subsumption.Arbitrator;
+import lejos.robotics.subsumption.Behavior;
 
 /**
  * 
@@ -15,7 +21,12 @@ public class gridNavigator {
 	 * Allows the robot to turn  when it hits a junction between lines.
 	 */
 	public gridNavigator(){
-		//TODO do this method
+		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
+		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
+		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
+		Arbitrator arby = new Arbitrator(new Behavior[] {new lineFollower(pilot, sensorL,sensorR)});
+		
+		
 	}
 	
 	public static void main(String[] args) {
@@ -23,7 +34,6 @@ public class gridNavigator {
 		Button.waitForAnyPress();
 		new gridNavigator();
 	}
-
 }
 
 /*
