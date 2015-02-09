@@ -24,8 +24,15 @@ public class GridNavigator {
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
-		pilot.setTravelSpeed(50);
-		pilot.setRotateSpeed(50);
+		
+		sensorL.setHigh(440);
+		sensorL.setLow(350);
+		sensorR.setHigh(415);
+		sensorR.setLow(350);
+		
+		int speed = 50;
+		pilot.setTravelSpeed(speed);
+		pilot.setRotateSpeed(speed);
 		Arbitrator arby = new Arbitrator(new Behavior[] {new GridLineFollower(pilot, sensorL, sensorR), 
 														new JunctionBehavior(pilot, sensorL, sensorR)});
 		arby.start();

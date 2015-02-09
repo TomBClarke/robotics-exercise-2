@@ -6,21 +6,29 @@ import lejos.nxt.LightSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 
+/**
+ * Control the robot when it reaches a junction.
+ * 
+ * @author Thomas Clarke, Rowan Cole and Kyle Allen-Taylor
+ *
+ */
 public class JunctionBehavior implements Behavior {
 	
 	private final DifferentialPilot pilot;
 	private final LightSensor sensorL;
 	private final LightSensor sensorR;
 	
+	/**
+	 * Allows the class access to the sensors and pilot.
+	 * 
+	 * @param pilot The pilot controlling the robot.
+	 * @param sensorL The left light sensor.
+	 * @param sensorR The right light sensor.
+	 */
 	public JunctionBehavior(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
 		this.pilot= pilot;
 		this.sensorL = sensorL;
 		this.sensorR = sensorR;
-		
-		sensorL.setHigh(440);
-		sensorL.setLow(350);
-		sensorR.setHigh(415);
-		sensorR.setLow(350);
 	}
 
 	@Override
@@ -46,5 +54,4 @@ public class JunctionBehavior implements Behavior {
 	public void suppress() {
 		//Nothing to do here.
 	}
-
 }
