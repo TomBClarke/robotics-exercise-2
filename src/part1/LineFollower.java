@@ -14,12 +14,12 @@ import lejos.util.Delay;
  * @author Thomas Clarke, Rowan Cole and Kyle Allen-Taylor
  *
  */
-public class lineFollower {
+public class LineFollower {
 	
 	/**
 	 * Allows the robot to follow a line using two light sensors.
 	 */
-	public lineFollower(){
+	public LineFollower(){
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
@@ -58,7 +58,7 @@ public class lineFollower {
 	public static void main(String[] args) {
 		System.out.println("Press any button to begin.");
 		Button.waitForAnyPress();
-		new lineFollower();
+		new LineFollower();
 	}
 }
 

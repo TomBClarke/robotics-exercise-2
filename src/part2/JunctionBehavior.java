@@ -6,13 +6,13 @@ import lejos.nxt.LightSensor;
 import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 
-public class junctionBehavior implements Behavior {
+public class JunctionBehavior implements Behavior {
 	
 	private final DifferentialPilot pilot;
 	private final LightSensor sensorL;
 	private final LightSensor sensorR;
 	
-	public junctionBehavior(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
+	public JunctionBehavior(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
 		this.pilot= pilot;
 		this.sensorL = sensorL;
 		this.sensorR = sensorR;
@@ -32,7 +32,7 @@ public class junctionBehavior implements Behavior {
 	public void action() {
 		Random rand = new Random();
 		double randNum = rand.nextDouble();
-		pilot.travel(95);
+		pilot.travel(90);
 		if(randNum < 0.25){
 			pilot.rotate(90);
 		}else if(randNum < 0.5){

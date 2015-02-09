@@ -5,14 +5,14 @@ import lejos.robotics.navigation.DifferentialPilot;
 import lejos.robotics.subsumption.Behavior;
 import lejos.util.Delay;
 
-public class gridLineFollower implements Behavior {
+public class GridLineFollower implements Behavior {
 
 	private final DifferentialPilot pilot;
 	private final LightSensor sensorL;
 	private final LightSensor sensorR;
 	private boolean suppressed;
 
-	public gridLineFollower(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
+	public GridLineFollower(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
 		this.pilot= pilot;
 		this.sensorL = sensorL;
 		this.sensorR = sensorR;

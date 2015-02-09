@@ -15,26 +15,26 @@ import lejos.robotics.subsumption.Behavior;
  * @author Thomas Clarke, Rowan Cole and Kyle Allen-Taylor
  *
  */
-public class gridNavigator {
+public class GridNavigator {
 
 	/**
 	 * Allows the robot to turn  when it hits a junction between lines.
 	 */
-	public gridNavigator(){
+	public GridNavigator(){
 		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
 		pilot.setTravelSpeed(50);
 		pilot.setRotateSpeed(50);
-		Arbitrator arby = new Arbitrator(new Behavior[] {new gridLineFollower(pilot, sensorL, sensorR), 
-														new junctionBehavior(pilot, sensorL, sensorR)});
-		arby.start();		
+		Arbitrator arby = new Arbitrator(new Behavior[] {new GridLineFollower(pilot, sensorL, sensorR), 
+														new JunctionBehavior(pilot, sensorL, sensorR)});
+		arby.start();
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("Press any button to begin.");
 		Button.waitForAnyPress();
-		new gridNavigator();
+		new GridNavigator();
 	}
 }
 

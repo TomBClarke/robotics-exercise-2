@@ -13,12 +13,12 @@ import lejos.robotics.navigation.DifferentialPilot;
  * @author Thomas Clarke, Rowan Cole and Kyle Allen-Taylor
  *
  */
-public class distanceControl {
+public class DistanceControl {
 	
 	/**
 	 * Allows the robot to keep its distances from robotics.
 	 */
-	public distanceControl(){
+	public DistanceControl(){
 		
 		//Creates a ultrasonic sensor to find distance.
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S1);
@@ -59,7 +59,7 @@ public class distanceControl {
 	public static void main(String[] args) {
 		System.out.println("Press any button to begin.");
 		Button.waitForAnyPress();
-		new distanceControl();
+		new DistanceControl();
 	}
 }
 
