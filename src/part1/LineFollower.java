@@ -44,20 +44,11 @@ public class LineFollower {
 	/**
 	 * Makes the robot follow a line.
 	 */
-	public void run(){	
-		/*
-		sensorL.setHigh(440);
-		sensorL.setLow(350);
-		sensorR.setHigh(415);
-		sensorR.setLow(350);
-		*/
+	public void run(){
 		
 		calibrate(sensorL, sensorR);
 		
-		System.out.println("Press when ready.");
-		Button.waitForAnyPress();
-		
-		pilot.setTravelSpeed(150);
+		pilot.setTravelSpeed(130);
 		while(true){
 				checkLine();
 		}
@@ -95,8 +86,9 @@ public class LineFollower {
 		sR.setLow(sumRd / 5);
 		
 		System.out.println("Light values: Left = " + (sumLl / 5) + " Right = " + (sumRl / 5));
-		System.out.println("Dark values: Left = " + (sumLd/ 5) + " Right = " + (sumRd / 5));
-		System.out.println("Done!");
+		System.out.println("Dark values: Left = " + (sumLd / 5) + " Right = " + (sumRd / 5));
+		System.out.println("Done! Press when ready to continue.");
+		Button.waitForAnyPress();
 	}
 	
 	/**

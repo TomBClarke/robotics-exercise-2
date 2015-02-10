@@ -20,10 +20,8 @@ public class DistanceControl {
 	 */
 	public DistanceControl(){
 		
-		//Creates a ultrasonic sensor to find distance.
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S4);
 		
-		//Creates a pilot to control the robot with.
 		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
 		
 		pilot.forward();
@@ -36,7 +34,6 @@ public class DistanceControl {
 		while(true){
 			measuredDistance = sonar.getDistance();
 			error = measuredDistance - setDistance;
-			//currentSpeed+k* 
 			currentSpeed = k * error;
 			
 			if(currentSpeed > 300){
