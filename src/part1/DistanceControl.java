@@ -24,7 +24,7 @@ public class DistanceControl {
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S4);
 		
 		//Creates a pilot to control the robot with.
-		DifferentialPilot pilot = new DifferentialPilot(56, 182, Motor.C, Motor.B);
+		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
 		
 		pilot.forward();
 		double setDistance = 20;
@@ -57,7 +57,7 @@ public class DistanceControl {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Press any button to begin.");
+		System.out.println("Distance controller ready. Press any button to begin.");
 		Button.waitForAnyPress();
 		new DistanceControl();
 	}

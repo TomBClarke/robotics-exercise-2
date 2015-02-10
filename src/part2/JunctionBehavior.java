@@ -41,13 +41,12 @@ public class JunctionBehavior implements Behavior {
 		Random rand = new Random();
 		double randNum = rand.nextDouble();
 		pilot.travel(90);
-		if(randNum < 0.25){
+		if(randNum < (1.0 / 3.0)){
 			pilot.rotate(90);
-		}else if(randNum < 0.5){
+		}else if(randNum < (2.0 / 3.0)){
 			pilot.rotate(-90);
-		}else if(randNum < 0.75){
-			pilot.rotate(180);
 		}
+		System.out.println("Random Double = " + randNum);
 	}
 
 	@Override

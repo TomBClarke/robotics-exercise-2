@@ -13,10 +13,8 @@ import lejos.robotics.subsumption.Behavior;
  */
 public class GridLineFollower implements Behavior {
 
-	private final DifferentialPilot pilot;
-	private final LightSensor sensorL;
-	private final LightSensor sensorR;
 	private boolean suppressed;
+	private final LineFollower lf;
 
 	/**
 	 * Allows the class access to the sensors and pilot.
@@ -26,9 +24,7 @@ public class GridLineFollower implements Behavior {
 	 * @param sensorR The right light sensor.
 	 */
 	public GridLineFollower(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
-		this.pilot= pilot;
-		this.sensorL = sensorL;
-		this.sensorR = sensorR;
+		this.lf = new LineFollower(pilot, sensorL, sensorR);
 		suppressed = false;
 	}
 
@@ -38,33 +34,10 @@ public class GridLineFollower implements Behavior {
 	}
 
 	@Override
-	public void action() {
-		/*
-		int turnTime = 50;
-		sensorL.setHigh(440);
-		sensorL.setLow(350);
-		sensorR.setHigh(415);
-		sensorR.setLow(350);
-		
-		pilot.forward();
-		while(!suppressed){
-			if(sensorL.getLightValue() < 50){
-				pilot.steer(200);
-				Delay.msDelay(turnTime);
-				pilot.forward();
-			}
-			if(sensorR.getLightValue() < 50){
-				pilot.steer(-200);
-				Delay.msDelay(turnTime);
-				pilot.forward();
-			}
-			Thread.yield();
-		}
-		*/
-		
+	public void action() {		
 		//Uses the same line following method from part 1.
 		while(!suppressed){
-			LineFollower.checkLine(pilot, sensorL, sensorR); //Happy?
+			lf.checkLine();
 		}
 		suppressed = false;
 	}
