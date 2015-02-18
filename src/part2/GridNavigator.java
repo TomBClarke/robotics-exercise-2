@@ -23,17 +23,12 @@ public class GridNavigator {
 	 * Allows the robot to turn  when it hits a junction between lines.
 	 */
 	public GridNavigator(){
-		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
+		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
 		Delay.msDelay(500);
 		
 		LineFollower.calibrate(sensorL, sensorR);
-		
-		//sensorL.setHigh(440);
-		//sensorL.setLow(350);
-		//sensorR.setHigh(415);
-		//sensorR.setLow(350);
 		
 		int speed = 80;
 		pilot.setTravelSpeed(speed);
@@ -50,3 +45,11 @@ public class GridNavigator {
 		new GridNavigator();
 	}
 }
+
+
+
+//Old measurements just in case.
+//sensorL.setHigh(440);
+//sensorL.setLow(350);
+//sensorR.setHigh(415);
+//sensorR.setLow(350);

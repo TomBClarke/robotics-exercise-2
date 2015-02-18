@@ -115,7 +115,7 @@ public class LineFollower {
 		System.out.println("Line follower ready. Press any button to begin.");
 		Button.waitForAnyPress();
 		
-		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
+		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
 		

@@ -22,7 +22,7 @@ public class DistanceControl {
 		
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S4);
 		
-		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
+		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
 		
 		pilot.forward();
 		double setDistance = 20;
