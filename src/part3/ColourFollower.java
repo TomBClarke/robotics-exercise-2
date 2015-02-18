@@ -24,6 +24,8 @@ public class ColourFollower {
 	public ColourFollower(){
 		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
 		NXTCam cam = new NXTCam(SensorPort.S1);
+		double turnRate=0;
+
 
 		cam.setTrackingMode(NXTCam.COLOR);
 		cam.enableTracking(true);
@@ -31,10 +33,15 @@ public class ColourFollower {
 		Delay.msDelay(1000);
 		
 		cam.sortBy(NXTCam.SIZE);
+		pilot.forward();
 		
 		while(true){
 			Rectangle ball = cam.getRectangle(0);
 			double position = ball.getCenterX();
+			turnRate=position-90;
+			pilot.steer(-turnRate);
+			
+			
 		}
 	}
 	
