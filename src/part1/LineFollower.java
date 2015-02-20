@@ -31,14 +31,6 @@ public class LineFollower {
 		this.pilot = pilot;
 		this.sensorL = sensorL;
 		this.sensorR = sensorR;
-		
-		//Used for calibration purposes:
-		/*
-		while(true){
-			System.out.println("L = " + sensorL.getNormalizedLightValue() + ", R = " + sensorR.getNormalizedLightValue());
-			Delay.msDelay(1000);
-		}
-		*/
 	}
 	
 	/**
