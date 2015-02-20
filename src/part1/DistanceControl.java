@@ -26,15 +26,23 @@ public class DistanceControl {
 		
 		pilot.forward();
 		double setDistance = 20;
+		double bandWidth = 5;
+		double targetDistance;
 		double currentSpeed = 0;
-		double k = 5;
+		double k = 0.1;
 		double measuredDistance;
 		double error;
 		
 		while(true){
 			measuredDistance = sonar.getDistance();
-			error = measuredDistance - setDistance;
-			currentSpeed = k * error;
+			if(currentSpeed>0){
+				targetDistance = setDistance + bandWidth;
+			} else {
+				targetDistance = setDistance - bandWidth;
+			}
+			error = measuredDistance-targetDistance;
+			
+			currentSpeed += k * error;
 			
 			if(currentSpeed > 300){
 				currentSpeed = 300;
