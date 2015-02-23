@@ -22,27 +22,19 @@ public class DistanceControl {
 		
 		UltrasonicSensor sonar = new UltrasonicSensor(SensorPort.S4);
 		
-		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
+		DifferentialPilot pilot = new DifferentialPilot(81.6, 160, Motor.C, Motor.B);
 		
 		pilot.forward();
 		double setDistance = 20;
-		double bandWidth = 5;
-		double targetDistance;
 		double currentSpeed = 0;
-		double k = 0.1;
+		double k = 5;
 		double measuredDistance;
 		double error;
 		
 		while(true){
 			measuredDistance = sonar.getDistance();
-			if(currentSpeed>0){
-				targetDistance = setDistance + bandWidth;
-			} else {
-				targetDistance = setDistance - bandWidth;
-			}
-			error = measuredDistance-targetDistance;
-			
-			currentSpeed += k * error;
+			error = measuredDistance - setDistance;
+			currentSpeed = k * error;
 			
 			if(currentSpeed > 300){
 				currentSpeed = 300;
@@ -60,10 +52,10 @@ public class DistanceControl {
 			pilot.setTravelSpeed(currentSpeed);
 		}
 	}
-
 	public static void main(String[] args) {
 		System.out.println("Distance controller ready. Press any button to begin.");
 		Button.waitForAnyPress();
 		new DistanceControl();
 	}
+	
 }
