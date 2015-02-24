@@ -1,5 +1,7 @@
 package part2;
 
+import java.util.LinkedList;
+
 import part1.LineFollower;
 import lejos.nxt.LightSensor;
 import lejos.robotics.navigation.DifferentialPilot;
@@ -15,6 +17,7 @@ public class GridLineFollower implements Behavior {
 
 	private boolean suppressed;
 	private final LineFollower lf;
+	private LinkedList<Integer> pathToTake;
 
 	/**
 	 * Allows the class access to the sensors and pilot.
@@ -23,14 +26,15 @@ public class GridLineFollower implements Behavior {
 	 * @param sensorL The left light sensor.
 	 * @param sensorR The right light sensor.
 	 */
-	public GridLineFollower(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR) {
+	public GridLineFollower(DifferentialPilot pilot, LightSensor sensorL, LightSensor sensorR, LinkedList<Integer> pathToTake) {
 		this.lf = new LineFollower(pilot, sensorL, sensorR);
 		suppressed = false;
+		this.pathToTake = pathToTake;
 	}
 
 	@Override
 	public boolean takeControl() {
-		return true;
+		return !pathToTake.isEmpty();
 	}
 
 	@Override

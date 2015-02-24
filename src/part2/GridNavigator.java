@@ -1,5 +1,8 @@
 package part2;
 
+import java.util.LinkedList;
+import java.util.Random;
+
 import part1.LineFollower;
 import lejos.nxt.Button;
 import lejos.nxt.LightSensor;
@@ -22,7 +25,7 @@ public class GridNavigator {
 	/**
 	 * Allows the robot to turn  when it hits a junction between lines.
 	 */
-	public GridNavigator(){
+	public GridNavigator(LinkedList<Integer> pathToTake){
 		DifferentialPilot pilot = new DifferentialPilot(88.0, 162, Motor.C, Motor.B);
 		LightSensor sensorL = new LightSensor(SensorPort.S2, true);
 		LightSensor sensorR = new LightSensor(SensorPort.S3, true);
@@ -30,26 +33,26 @@ public class GridNavigator {
 		
 		LineFollower.calibrate(sensorL, sensorR);
 		
-		int speed = 80;
+		int speed = 100;
 		pilot.setTravelSpeed(speed);
 		pilot.setRotateSpeed(speed);
 		
-		Arbitrator arby = new Arbitrator(new Behavior[] {new GridLineFollower(pilot, sensorL, sensorR), 
-														new JunctionBehavior(pilot, sensorL, sensorR)});
+		Arbitrator arby = new Arbitrator(new Behavior[] {new GridLineFollower(pilot, sensorL, sensorR, pathToTake), 
+														new JunctionBehavior(pilot, sensorL, sensorR, pathToTake)});
 		arby.start();
 	}
 	
 	public static void main(String[] args) {
 		System.out.println("Grid navigator ready. Press any button to begin.");
 		Button.waitForAnyPress();
-		new GridNavigator();
+		
+		Random rand = new Random();
+		LinkedList<Integer> pathToTake = new LinkedList<Integer>();
+		for(int i = 0; i < 5; i++){
+			int randNum = rand.nextInt(3);
+			pathToTake.add(randNum);
+		}
+		
+		new GridNavigator(pathToTake);
 	}
 }
-
-
-
-//Old measurements just in case.
-//sensorL.setHigh(440);
-//sensorL.setLow(350);
-//sensorR.setHigh(415);
-//sensorR.setLow(350);

@@ -52,6 +52,7 @@ public class DistanceControl {
 			pilot.setTravelSpeed(currentSpeed);
 		}
 	}
+	
 	public static void main(String[] args) {
 		System.out.println("Distance controller ready. Press any button to begin.");
 		Button.waitForAnyPress();

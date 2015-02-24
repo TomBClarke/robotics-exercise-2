@@ -90,7 +90,7 @@ public class LineFollower {
 		pilot.forward();
 		int turnTime = 50;
 		int turnAmount = 200;
-		System.out.println("L = " + sensorL.getLightValue() + ", R = " + sensorR.getLightValue());
+		//System.out.println("L = " + sensorL.getLightValue() + ", R = " + sensorR.getLightValue());
 		if(sensorL.getLightValue() < 50){
 			pilot.steer(turnAmount);
 			Delay.msDelay(turnTime);
