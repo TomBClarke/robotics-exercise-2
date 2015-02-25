@@ -48,7 +48,7 @@ public class GridNavigator {
 		
 		Random rand = new Random();
 		LinkedList<Integer> pathToTake = new LinkedList<Integer>();
-		for(int i = 0; i < 5; i++){
+		for(int i = 0; i < 50; i++){
 			int randNum = rand.nextInt(3);
 			pathToTake.add(randNum);
 		}
